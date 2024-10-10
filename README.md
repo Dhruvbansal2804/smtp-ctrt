@@ -29,4 +29,4 @@
 
 	```python manage.py runserver```
 
-7. Open the app in your browser at http://localhost:8000/
+7. Open the app in your browser at http://localhost:8000/# smtp-ctrt
