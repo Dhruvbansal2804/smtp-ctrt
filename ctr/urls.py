@@ -48,3 +48,10 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
+
+# Add URL pattern for the README view
+from django.views.generic import TemplateView
+
+urlpatterns += [
+    path('readme/', TemplateView.as_view(template_name='readme.html'), name='readme'),
+]

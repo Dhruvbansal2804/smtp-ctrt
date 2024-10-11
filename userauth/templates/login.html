@@ -33,7 +33,7 @@
 				</div>
 				<div class="form-group">
 					<p>{{ form.password.label }}</p>
-					<p class="form-caption"><a href="/forgotpassword">Forgot Password?</a></p>
+					<p class="form-caption"><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
 					{{ form.password }}
 					{{ form.password.error }}
 				</div>
