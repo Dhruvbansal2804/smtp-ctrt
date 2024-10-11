@@ -55,6 +55,7 @@ class SecondaryRegistry(models.Model):
         return self.name
 
 class CustomUser(AbstractUser):
+    username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=300, blank=True, null=True)
     last_name = models.CharField(max_length=300, blank=True, null=True)
     email = models.EmailField(max_length=300, blank=True, null=True, unique=True)
@@ -65,11 +66,8 @@ class CustomUser(AbstractUser):
     access = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        if CustomUser.objects.exclude(pk=self.pk).filter(email=self.email).exists():
-            raise ValueError('This email is already registered.')
-        if CustomUser.objects.exclude(pk=self.pk).filter(username=self.username).exists():
-            raise ValueError('This username is already taken.')
-        self.username = self.email
+        if not self.username:
+            self.username = self.email
         super().save(*args, **kwargs)
 
     def __str__(self):
