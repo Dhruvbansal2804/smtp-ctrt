@@ -21,7 +21,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('public.urls')),
-    path('accounts/', include('userauth.urls')),
+    path('', include('userauth.urls')),  # Remove 'accounts/' prefix
     path('dashboard/', include('dashboard.urls')),
     path('search/', include('search.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
