@@ -16,42 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    # /
+    path('admin/', admin.site.urls),
     path('', include('public.urls')),
-
-    # /register, /login
-    path('', include('userauth.urls')),
-
-    # /dashboard
+    path('accounts/', include('userauth.urls')),
     path('dashboard/', include('dashboard.urls')),
-
-    # /search
-    path('', include('search.urls')),
-
-    path('admin/', admin.site.urls),
-]
-
-
-from django.contrib import admin
-from django.urls import path
-from django.contrib.auth import views as auth_views  # Import authentication views
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    # Other URL patterns for your application...
-
-    # Password reset URLs
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-]
-
-# Add URL pattern for the README view
-from django.views.generic import TemplateView
-
-urlpatterns += [
-    path('readme/', TemplateView.as_view(template_name='readme.html'), name='readme'),
+    path('search/', include('search.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
